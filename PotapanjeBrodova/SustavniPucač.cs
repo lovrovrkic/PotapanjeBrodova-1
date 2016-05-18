@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PotapanjeBrodova
 {
-    class SustavniPucač : IPucač
+    public class SustavniPucač : IPucač
     {
         public SustavniPucač(IEnumerable<Polje> pogođena, Mreža mreža)
         {
