@@ -25,10 +25,16 @@ namespace PotapanjeBrodova
             
             // izabrati polje i vratiti ga kao rezultat
             if (liste.Count() == 1)
-                liste.First().First();
-            int indeks = slučajni.Next(liste.Count());
-            return liste.ElementAt(indeks).First();
+                zadnjeGađano = liste.First().First();
+            else
+            {
+                int indeks = slučajni.Next(liste.Count());
+                zadnjeGađano = liste.ElementAt(indeks).First();
+            }
+            return zadnjeGađano;
         }
+
+        private Polje zadnjeGađano;
 
         private Orijentacija DajOrijentaciju()
         {
@@ -68,8 +74,24 @@ namespace PotapanjeBrodova
             return liste;
         }
 
+        public void EvidentirajRezultat(RezultatGađanja rezultat)
+        {
+            if (rezultat == RezultatGađanja.Promašaj)
+                return;
+            pogođenaPolja.Add(zadnjeGađano);
+            pogođenaPolja.Sort((a, b) => a.Redak - b.Redak + a.Stupac - b.Stupac);
+        }
+
         List<Polje> pogođenaPolja;
         Mreža mreža;
         Random slučajni = new Random();
+
+        public IEnumerable<Polje> PogođenaPolja
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
